@@ -1,6 +1,24 @@
 #include <Namu/astring.hpp>
 
 namespace namu {
+	style_t& operator&=(style_t& a, style_t b) noexcept {
+		return a = a & b;
+	}
+	style_t& operator|=(style_t& a, style_t b) noexcept {
+		return a = a | b;
+	}
+	style_t& operator^=(style_t& a, style_t b) noexcept {
+		return a = a ^ b;
+	}
+	style_t& operator<<=(style_t& a, int b) noexcept {
+		return a = a << b;
+	}
+	style_t& operator>>=(style_t& a, int b) noexcept {
+		return a = a >> b;
+	}
+}
+
+namespace namu {
 	achar_t& achar_t::operator=(char character) noexcept {
 		byte = character;
 		return *this;
