@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace namu {
 	enum class style_t : std::uint16_t {};
@@ -260,5 +261,36 @@ namespace namu {
 	using astring = std::basic_string<achar_t>;
 	using astring_view = std::basic_string_view<achar_t>;
 
+	bool operator==(const std::string& a, const astring& b);
+	bool operator==(const astring& a, const std::string& b);
+	bool operator==(const std::string_view& a, const astring& b);
+	bool operator==(const astring& a, const std::string_view& b);
+	bool operator!=(const std::string& a, const astring& b);
+	bool operator!=(const astring& a, const std::string& b);
+	bool operator!=(const std::string_view& a, const astring& b);
+	bool operator!=(const astring& a, const std::string_view& b);
+	bool operator>(const std::string& a, const astring& b);
+	bool operator>(const astring& a, const std::string& b);
+	bool operator>(const std::string_view& a, const astring& b);
+	bool operator>(const astring& a, const std::string_view& b);
+	bool operator>=(const std::string& a, const astring& b);
+	bool operator>=(const astring& a, const std::string& b);
+	bool operator>=(const std::string_view& a, const astring& b);
+	bool operator>=(const astring& a, const std::string_view& b);
+	bool operator<(const std::string& a, const astring& b);
+	bool operator<(const astring& a, const std::string& b);
+	bool operator<(const std::string_view& a, const astring& b);
+	bool operator<(const astring& a, const std::string_view& b);
+	bool operator<=(const std::string& a, const astring& b);
+	bool operator<=(const astring& a, const std::string& b);
+	bool operator<=(const std::string_view& a, const astring& b);
+	bool operator<=(const astring& a, const std::string_view& b);
+
 	std::string extract_string(const astring_view& string);
+	std::vector<style_t> extract_style(const astring_view& astring);
+	astring to_astring(const std::string_view& string);
+	
+	astring make_astring(const std::string_view& string);
+	astring make_astring(const std::vector<style_t>& style);
+	astring make_astring(const std::string_view& string, const std::vector<style_t>& style);
 }
