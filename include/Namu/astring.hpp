@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstdint>
+#include <string>
+#include <string_view>
 
 namespace namu {
 	enum class style_t : std::uint16_t {};
@@ -254,4 +256,9 @@ namespace namu {
 	constexpr char operator>>(char byte, const achar_t& character) noexcept {
 		return byte >> character.byte;
 	}
+
+	using astring = std::basic_string<achar_t>;
+	using astring_view = std::basic_string_view<achar_t>;
+
+	std::string extract_string(const astring_view& string);
 }

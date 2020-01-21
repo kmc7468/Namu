@@ -1,5 +1,7 @@
 #include <Namu/astring.hpp>
 
+#include <algorithm>
+
 namespace namu {
 	style_t& operator&=(style_t& a, style_t b) noexcept {
 		return a = a & b;
@@ -80,5 +82,16 @@ namespace namu {
 	achar_t achar_t::operator--(int) noexcept {
 		achar_t result(*this);
 		return --byte, result;
+	}
+
+	std::string extract_string(const astring_view& string) {
+		if (string.size() == 0) return "";
+
+		std::string result(0, string.size());
+		std::transform(string.begin(), string.end(), result.begin(), [](const achar_t& character) {
+			return character.byte;
+		});
+
+		return result;
 	}
 }
